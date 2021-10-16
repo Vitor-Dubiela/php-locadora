@@ -29,7 +29,7 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
             $this->response->setStatusCode(404);
-            return "Not Found!";
+            return $this->views->renderView("notfound");
         }
 
         return $this->views->renderView($callback);
