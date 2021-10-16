@@ -8,11 +8,13 @@ class Router
 
     public Request $request;
     public Response $response;
+    public Views $views;
 
-    public function __construct($request, $response)
+    public function __construct($request, $response, $views)
     {
         $this->request = $request;
         $this->response = $response;
+        $this->views = $views;
     }
 
     public function get($path, $callback)
@@ -29,6 +31,7 @@ class Router
             $this->response->setStatusCode(404);
             return "Not Found!";
         }
-        return call_user_func($callback);
+
+        return $this->views->renderView($callback);
     }
 }
