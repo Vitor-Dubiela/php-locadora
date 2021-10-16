@@ -7,5 +7,6 @@ use src\Core\Application;
 $app = new Application();
 
 $app->router->get('/', 'home');
+$app->router->get('/movies', 'movies');
 
 $app->run();

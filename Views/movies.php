@@ -1,3 +1,3 @@
 <div class="container">
-    <h1>Not Found</h1>
+    <h1>Movies</h1>
 </div>
