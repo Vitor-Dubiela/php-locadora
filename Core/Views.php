@@ -6,20 +6,22 @@ class Views
 {
     public function renderView($view)
     {
-        if ($view === 'notfound') {
-            return file_get_contents(__DIR__ . "/../Views/Err/notfound.php");
-        }
-        
-        $template = file_get_contents(__DIR__ . "/../Views/Templates/$view.php");
-        $mainpage = file_get_contents(__DIR__ . "/../Views/main.php");
+        $mainpage = file_get_contents(__DIR__ . "/../Views/Layouts/main.php");
         $title = self::getTitle($view);
 
-        return self::getTemplate($title, $template, $mainpage);
+        if ($view === 'notfound') {
+            $layout = file_get_contents(__DIR__ . "/../Views/Err/$view.php");
+            return self::getLayout($title, $layout, $mainpage);
+        }
+
+        $layout = file_get_contents(__DIR__ . "/../Views/$view.php");
+
+        return self::getLayout($title, $layout, $mainpage);
     }
 
-    protected static function getTemplate($title, $template, $mainpage)
+    protected static function getLayout($title, $layout, $mainpage)
     {
-        return str_replace(["{{title}}", "{{content}}"], [$title, $template], $mainpage);
+        return str_replace(["{{title}}", "{{content}}"], [$title, $layout], $mainpage);
     }
 
     protected static function getTitle($view)
@@ -27,6 +29,12 @@ class Views
         switch ($view) {
             case 'home':
                 return "Home";
+
+            case 'movies':
+                return "Movies";
+
+            case 'notfound':
+                return "404 Not Found";
         }
     }
 }
