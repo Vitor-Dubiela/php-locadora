@@ -9,13 +9,16 @@ class SiteController
     public function home()
     {
         $views = new Views();
-        return $views->getLayoutContent('home');
+        return $views->renderView('home', 'Home');
     }
 
     public function movies()
     {
         $views = new Views();
-        return $views->getLayoutContent('movies');
+        $params = [
+            'name' => 'Its Fumas'
+        ];
+        return $views->renderView('movies', 'Movies', $params);
     }
 
     public function handleMovie()
