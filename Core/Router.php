@@ -32,14 +32,12 @@ class Router
         $method = $this->request->getMethod();
         $path = $this->request->getPath();
         $callback = $this->routes[$method][$path] ?? false;
+        
         if ($callback === false) {
             $this->response->setStatusCode(404);
             return $this->views->renderView("notfound");
         }
-        if (is_string($callback)) {
-            return $this->views->renderView($callback);
-        }
 
-        return $this->views->renderContent($callback);
+        return $this->views->renderView($callback);
     }
 }

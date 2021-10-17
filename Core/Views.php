@@ -7,26 +7,24 @@ class Views
     public function renderView($view)
     {
         $layout = self::getLayout();
-        $title = self::getTitle($view);
 
         if ($view === 'notfound') {
             $layoutContent = file_get_contents(__DIR__ . "/../Views/Err/$view.php");
-            return self::renderLayout($title, $layoutContent, $layout);
+            return self::renderNotFound("404 Not Found", $layoutContent, $layout);
         }
 
-        $layoutContent = file_get_contents(__DIR__ . "/../Views/$view.php");
-
-        return self::renderLayout($title, $layoutContent, $layout);
+        $title = self::getTitle($view[1]);
+        return $this->renderContent($title, $view);
     }
 
-    public function renderContent($viewContent)
+    public function renderContent($title, $view)
     {
-        $layoutContent = call_user_func($viewContent);
         $layout = self::getLayout();
-        return str_replace("{{content}}", $layoutContent, $layout);
+        $layoutContent = call_user_func($view);
+        return str_replace(["{{title}}", "{{content}}"], [$title, $layoutContent], $layout);
     }
 
-    protected static function renderLayout($title, $layoutContent, $layout)
+    protected static function renderNotFound($title, $layoutContent, $layout)
     {
         return str_replace(["{{title}}", "{{content}}"], [$title, $layoutContent], $layout);
     }
@@ -36,13 +34,22 @@ class Views
         return file_get_contents(__DIR__ . "/../Views/Layouts/main.php");
     }
 
-    protected static function getTitle($view)
+
+    public function getLayoutContent($view)
     {
-        switch ($view) {
+        return file_get_contents(__DIR__ . "/../Views/$view.php");
+    }
+
+    protected static function getTitle($title)
+    {
+        switch ($title) {
             case 'home':
                 return "Home";
 
             case 'movies':
+                return "Movies";
+
+            case 'handleMovie':
                 return "Movies";
 
             case 'notfound':
