@@ -8,5 +8,8 @@ $app = new Application();
 
 $app->router->get('/', 'home');
 $app->router->get('/movies', 'movies');
+$app->router->post('/movies', function() {
+    echo "Hello World!";
+});
 
 $app->run();

@@ -6,22 +6,34 @@ class Views
 {
     public function renderView($view)
     {
-        $mainpage = file_get_contents(__DIR__ . "/../Views/Layouts/main.php");
+        $layout = self::getLayout();
         $title = self::getTitle($view);
 
         if ($view === 'notfound') {
-            $layout = file_get_contents(__DIR__ . "/../Views/Err/$view.php");
-            return self::getLayout($title, $layout, $mainpage);
+            $layoutContent = file_get_contents(__DIR__ . "/../Views/Err/$view.php");
+            return self::renderLayout($title, $layoutContent, $layout);
         }
 
-        $layout = file_get_contents(__DIR__ . "/../Views/$view.php");
+        $layoutContent = file_get_contents(__DIR__ . "/../Views/$view.php");
 
-        return self::getLayout($title, $layout, $mainpage);
+        return self::renderLayout($title, $layoutContent, $layout);
     }
 
-    protected static function getLayout($title, $layout, $mainpage)
+    public function renderContent($viewContent)
     {
-        return str_replace(["{{title}}", "{{content}}"], [$title, $layout], $mainpage);
+        $layoutContent = call_user_func($viewContent);
+        $layout = self::getLayout();
+        return str_replace("{{content}}", $layoutContent, $layout);
+    }
+
+    protected static function renderLayout($title, $layoutContent, $layout)
+    {
+        return str_replace(["{{title}}", "{{content}}"], [$title, $layoutContent], $layout);
+    }
+
+    protected static function getLayout()
+    {
+        return file_get_contents(__DIR__ . "/../Views/Layouts/main.php");
     }
 
     protected static function getTitle($view)

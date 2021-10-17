@@ -36,7 +36,10 @@ class Router
             $this->response->setStatusCode(404);
             return $this->views->renderView("notfound");
         }
+        if (is_string($callback)) {
+            return $this->views->renderView($callback);
+        }
 
-        return $this->views->renderView($callback);
+        return $this->views->renderContent($callback);
     }
 }
