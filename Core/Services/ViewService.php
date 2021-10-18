@@ -21,11 +21,18 @@ class ViewService
 
     public function getLayoutContent($view, $params = [])
     {
-        return file_get_contents($this->VIEWS_DIR."$view.php");
+        foreach ($params as $key => $value) {
+            $$key = $value;     //key => name / double variable => $variable = $key; 
+        }
+        ob_start();
+        include_once $this->VIEWS_DIR."$view.php";
+        return ob_get_clean();
     }
 
     public function getLayout()
     {
-        return file_get_contents($this->VIEWS_DIR."Layouts/main.php");
+        ob_start();
+        include_once $this->VIEWS_DIR."Layouts/main.php";
+        return ob_get_clean();
     }
 }
