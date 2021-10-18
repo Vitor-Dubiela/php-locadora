@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use src\Controllers\SiteController;
+use src\Core\Controllers\SiteController;
 use src\Core\Application;
 
 $app = new Application();

@@ -2,19 +2,21 @@
 
 namespace src\Core;
 
+use src\Core\Services\ViewService;
+
 class Router
 {
     protected array $routes = [];
 
     public Request $request;
     public Response $response;
-    public Views $views;
+    public ViewService $viewService;
 
-    public function __construct($request, $response, $views)
+    public function __construct($request, $response, $viewService)
     {
         $this->request = $request;
         $this->response = $response;
-        $this->views = $views;
+        $this->viewService = $viewService;
     }
 
     public function get($path, $callback)
@@ -35,7 +37,10 @@ class Router
         
         if ($callback === false) {
             $this->response->setStatusCode(404);
-            return $this->views->renderView("notfound", '404 Not Found');
+            return $this->viewService->renderView("notfound", '404 Not Found');
+        }
+        if (is_array($callback)) {
+            $callback[0] = new $callback[0]();
         }
 
         return call_user_func($callback);
