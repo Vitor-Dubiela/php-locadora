@@ -2,14 +2,13 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use src\Core\Controllers\SiteController;
 use src\Core\Application;
 
 $app = new Application();
 
-$app->router->get('/', 'home');
-$app->router->get('/movies', 'movies');
-$app->router->post('/movies', function() {
-    echo "Hello World!";
-});
+$app->router->get('/', [SiteController::class, 'home']);
+$app->router->get('/movies', [SiteController::class, 'movies']);
+$app->router->post('/movies', [SiteController::class, 'handleMovie']);
 
 $app->run();

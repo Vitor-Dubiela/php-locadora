@@ -2,19 +2,21 @@
 
 namespace src\Core;
 
+use src\Core\Services\ViewService;
+
 class Application
 {
     public Router $router;
     public Request $request;
     public Response $response;
-    public Views $views;
+    public ViewService $viewService;
 
     public function __construct()
     {
         $this->request = new Request();
         $this->response = new Response();
-        $this->views = new Views();
-        $this->router = new Router($this->request, $this->response, $this->views);
+        $this->viewService = new ViewService();
+        $this->router = new Router($this->request, $this->response, $this->viewService);
     }
 
     public function run()
