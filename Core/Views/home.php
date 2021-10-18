@@ -1,3 +1,2 @@
-<main class="container">
-    <h1>Home</h1>
-</main>
+<h1>Home</h1>
+<h3>Hi, <?php echo $name;?> </h3>

@@ -15,15 +15,15 @@ class SiteController
 
     public function home()
     {
-        return $this->viewService->renderView('home', 'Home');
+        $params = [
+            'name' => 'Its Fumas'
+        ];
+        return $this->viewService->renderView('home', 'Home', $params);
     }
 
     public function movies()
     {
-        $params = [
-            'name' => 'Its Fumas'
-        ];
-        return $this->viewService->renderView('movies', 'Movies', $params);
+        return $this->viewService->renderView('movies', 'Movies');
     }
 
     public function handleMovie()
