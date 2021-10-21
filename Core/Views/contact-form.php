@@ -1,7 +1,7 @@
-<h1>Movies</h1>
+<h1>Sign Up</h1>
 <form action="" method="post">
     <div class="mb-3">
-        <label for="name" class="form-label">Movie name:</label>
+        <label for="name" class="form-label">Name:</label>
         <input type="text" class="form-control" name="name" id="name">
     </div>
     <div class="mb-3">
