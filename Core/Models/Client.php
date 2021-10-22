@@ -10,9 +10,9 @@ abstract class Client
     public string $email;
     public string $phone;
     public string $adress;
-    public DateTime $birthDate;
+    public string $birthDate;
     public string $cpf;
-    public DateTime $CreatedAt;
+    public DateTime $createdAt;
     
     public function __construct($properties = [])
     {

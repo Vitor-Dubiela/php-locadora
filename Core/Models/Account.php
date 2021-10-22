@@ -9,7 +9,14 @@ class Account extends Client
 
     public function __toString(): string
     {
-        return "Name: $this->name <br>Email: $this->email <br>Phone: $this->phone";
+        $dt = $this->createdAt->format('Y-m-d H:i:s');
+        return "Name: $this->name <br>
+                Email: $this->email <br>
+                Phone: $this->phone <br>
+                Adress: $this->adress <br>
+                Birthdate: $this->birthDate <br>
+                CPF: $this->cpf <br>
+                Created At: $dt <br>";
     }
 
     public function create($properties = [])
