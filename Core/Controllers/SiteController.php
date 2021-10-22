@@ -2,6 +2,7 @@
 
 namespace src\Core\Controllers;
 
+use src\Core\Models\Account;
 use src\Core\Services\ViewService;
 
 class SiteController
@@ -21,13 +22,13 @@ class SiteController
         return $this->viewService->renderView('home', 'Home', $params);
     }
 
-    public function movies()
+    public function renderForm()
     {
-        return $this->viewService->renderView('movies', 'Movies');
+        return $this->viewService->renderView('contact-form', 'Sign Up');
     }
 
-    public function handleMovie()
+    public function renderAcctForm($params = [])
     {
-        return "Handling movie...";
+        return $this->viewService->renderView('account-form', 'Sign Up', $params);
     }
 }
