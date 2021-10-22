@@ -26,4 +26,9 @@ class SiteController
     {
         return $this->viewService->renderView('contact-form', 'Sign Up');
     }
+
+    public function renderAcctForm($params = [])
+    {
+        return $this->viewService->renderView('account-form', 'Sign Up', $params);
+    }
 }

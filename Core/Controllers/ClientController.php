@@ -10,10 +10,12 @@ class ClientController
     public array $clientsArray;
     private Account $account;
     private ClientService $clientService;
+    public SiteController $siteController;
 
     public function __construct()
     {
         $this->clientService = new ClientService();
+        $this->siteController = new SiteController();
     }
 
     public function post()
@@ -23,7 +25,7 @@ class ClientController
             return "error";
         }
         $this->account = new Account($client);
-        $this->clientsArray[] = $this->account;
-        return $this->account;
+        $this->clientsArray[] = $this->account; #insert the client into the DB
+        return $this->siteController->renderAcctForm($this->account);
     }
 }
