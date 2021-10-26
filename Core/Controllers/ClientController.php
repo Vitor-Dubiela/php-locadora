@@ -24,6 +24,6 @@ class ClientController
             return "error";
         }
         $this->account = new Account($client);
-        return $this->account;
+        return $this->siteController->login();
     }
 }

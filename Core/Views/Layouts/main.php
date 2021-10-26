@@ -28,6 +28,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/signup">Sign Up</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/login">Log In</a>
+                    </li>
                 </ul>
             </div>
         </div>

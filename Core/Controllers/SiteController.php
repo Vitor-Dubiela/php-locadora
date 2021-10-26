@@ -26,4 +26,9 @@ class SiteController
     {
         return $this->viewService->renderView('account-form', 'Sign Up');
     }
+
+    public function login()
+    {
+        return $this->viewService->renderView('login', 'Log In');
+    }
 }
