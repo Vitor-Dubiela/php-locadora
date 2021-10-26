@@ -12,5 +12,6 @@ $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/signup', [SiteController::class, 'renderForm']);
 $app->router->get('/login', [SiteController::class, 'login']);
 $app->router->post('/signup', [ClientController::class, 'post']);
+$app->router->post('/login', [ClientController::class, 'get']);
 
 $app->run();

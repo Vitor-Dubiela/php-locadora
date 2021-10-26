@@ -30,4 +30,18 @@ class ClientController
         }
         return $this->account;
     }
+    
+    public function get()
+    {
+        $this->account = new Account();
+        $array = [
+            'username' => $_POST['username'],
+            'password' => $_POST['password']
+        ];
+        $account = $this->account->read($array);
+        if ($account === false) {
+            return "false";
+        }
+        return $account->username;
+    }
 }

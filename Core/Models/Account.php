@@ -32,10 +32,18 @@ class Account extends Client
         return true; # returning true untill the DB be implemented
     }
 
-    public function read($cpf) : Account
+    public function read($properties = [])
     {
-        $account = new Account($props = []);
-        return $account;
+        $account = new Account();
+        $account->username = 'vitor@gmail.com';
+        $account->password = 'vitor';
+        if (
+            $properties['username'] === $account->username && 
+            $properties['password'] === $account->password
+        ) {
+            return $account;
+        }
+        return false;
     }
 
     public function update($cpf)

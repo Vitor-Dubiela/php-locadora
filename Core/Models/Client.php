@@ -16,7 +16,7 @@ abstract class Client
 
     abstract public function __toString() : string;
     abstract protected function create($properties = []);
-    abstract protected function read(string $cpf) : Account;
+    abstract protected function read($properties = []);
     abstract protected function update(string $cpf);
     abstract protected function delete(string $cpf);
 }
