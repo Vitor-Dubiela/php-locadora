@@ -16,6 +16,8 @@ class Account extends Client
                 Adress: $this->adress <br>
                 Birthdate: $this->birthDate <br>
                 CPF: $this->cpf <br>
+                Username: $this->username <br>
+                Password: $this->password <br>
                 Created At: $dt <br>";
     }
 

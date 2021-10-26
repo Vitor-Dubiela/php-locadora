@@ -32,7 +32,7 @@
             </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="container my-3">
         {{content}}
     </div>
 

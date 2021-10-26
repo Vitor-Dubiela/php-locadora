@@ -7,7 +7,6 @@ use src\Core\Services\ClientService;
 
 class ClientController
 {
-    public array $clientsArray;
     private Account $account;
     private ClientService $clientService;
     public SiteController $siteController;
@@ -25,7 +24,6 @@ class ClientController
             return "error";
         }
         $this->account = new Account($client);
-        $this->clientsArray[] = $this->account; #insert the client into the DB
-        return $this->siteController->renderAcctForm($this->account);
+        return $this->account;
     }
 }
