@@ -13,11 +13,6 @@ abstract class Client
     public string $birthDate;
     public string $cpf;
     public DateTime $createdAt;
-    
-    public function __construct($properties = [])
-    {
-        $this->create($properties);
-    }
 
     abstract public function __toString() : string;
     abstract protected function create($properties = []);

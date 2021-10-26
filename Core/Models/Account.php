@@ -26,6 +26,10 @@ class Account extends Client
         foreach ($properties as $key => $value) {
             $this->$key = $value;
         }
+        // verify if theres another user account with the same cpf and email
+        // if there is, return false
+        // otherwise return true
+        return true; # returning true untill the DB be implemented
     }
 
     public function read($cpf) : Account

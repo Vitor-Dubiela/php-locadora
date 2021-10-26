@@ -23,7 +23,11 @@ class ClientController
         if ($client === false) {
             return "error";
         }
-        $this->account = new Account($client);
-        return $this->siteController->login();
+        $this->account = new Account();
+        $ok = $this->account->create($client);
+        if ($ok) {
+            return $this->siteController->login();
+        }
+        return $this->account;
     }
 }
