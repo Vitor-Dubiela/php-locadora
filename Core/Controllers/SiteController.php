@@ -24,11 +24,11 @@ class SiteController
 
     public function renderForm()
     {
-        return $this->viewService->renderView('contact-form', 'Sign Up');
+        return $this->viewService->renderView('account-form', 'Sign Up');
     }
 
-    public function renderAcctForm($params = [])
+    public function login()
     {
-        return $this->viewService->renderView('account-form', 'Sign Up', $params);
+        return $this->viewService->renderView('login', 'Log In');
     }
 }

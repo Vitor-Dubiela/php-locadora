@@ -16,6 +16,8 @@ class Account extends Client
                 Adress: $this->adress <br>
                 Birthdate: $this->birthDate <br>
                 CPF: $this->cpf <br>
+                Username: $this->username <br>
+                Password: $this->password <br>
                 Created At: $dt <br>";
     }
 
@@ -24,12 +26,24 @@ class Account extends Client
         foreach ($properties as $key => $value) {
             $this->$key = $value;
         }
+        // verify if theres another user account with the same cpf and email
+        // if there is, return false
+        // otherwise return true
+        return true; # returning true untill the DB be implemented
     }
 
-    public function read($cpf) : Account
+    public function read($properties = [])
     {
-        $account = new Account($props = []);
-        return $account;
+        $account = new Account();
+        $account->username = 'vitor@gmail.com';
+        $account->password = 'vitor';
+        if (
+            $properties['username'] === $account->username && 
+            $properties['password'] === $account->password
+        ) {
+            return $account;
+        }
+        return false;
     }
 
     public function update($cpf)

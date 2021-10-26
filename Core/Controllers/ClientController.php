@@ -7,7 +7,6 @@ use src\Core\Services\ClientService;
 
 class ClientController
 {
-    public array $clientsArray;
     private Account $account;
     private ClientService $clientService;
     public SiteController $siteController;
@@ -24,8 +23,25 @@ class ClientController
         if ($client === false) {
             return "error";
         }
-        $this->account = new Account($client);
-        $this->clientsArray[] = $this->account; #insert the client into the DB
-        return $this->siteController->renderAcctForm($this->account);
+        $this->account = new Account();
+        $ok = $this->account->create($client);
+        if ($ok) {
+            return $this->siteController->login();
+        }
+        return $this->account;
+    }
+    
+    public function get()
+    {
+        $this->account = new Account();
+        $array = [
+            'username' => $_POST['username'],
+            'password' => $_POST['password']
+        ];
+        $account = $this->account->read($array);
+        if ($account === false) {
+            return "false";
+        }
+        return $account->username;
     }
 }
