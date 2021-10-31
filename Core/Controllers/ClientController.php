@@ -3,6 +3,7 @@
 namespace src\Core\Controllers;
 
 use src\Core\Models\Account;
+use src\Core\Request;
 use src\Core\Services\ClientService;
 
 class ClientController
@@ -17,14 +18,15 @@ class ClientController
         $this->siteController = new SiteController();
     }
 
-    public function post()
+    public function post(Request $request)
     {
-        $client = $this->clientService->checkClient();
-        if ($client === false) {
+        $checkBody = $this->clientService->checkPost();
+        if ($checkBody === false) {
             return "error";
         }
+        $body = $request->getBody();
         $this->account = new Account();
-        $ok = $this->account->create($client);
+        $ok = $this->account->create($body);
         if ($ok) {
             return $this->siteController->login();
         }

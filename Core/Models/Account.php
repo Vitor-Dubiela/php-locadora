@@ -2,6 +2,8 @@
 
 namespace src\Core\Models;
 
+use DateTime;
+
 class Account extends Client
 {
     public string $username;
@@ -23,6 +25,8 @@ class Account extends Client
 
     public function create($properties = [])
     {
+        $this->createdAt = new DateTime();
+        $this->username = $properties['email'];
         foreach ($properties as $key => $value) {
             $this->$key = $value;
         }
