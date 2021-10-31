@@ -6,7 +6,7 @@ use DateTime;
 
 class ClientService
 {
-    public function checkClient()
+    public function checkPost()
     {
         $name = $_POST['name'];
         $email = $_POST['email'];
@@ -27,17 +27,7 @@ class ClientService
             // CHECK DB IF CPF IS VALID
             // IF IT IS, KEEP THE PROCEDURE
             // OTHERWISE RETURN 'CPF NOT VALID. YOU MAY TRY IT AGAIN.'
-            return $client = [
-                'name' => $name,
-                'email' => $email,
-                'phone' => $phone,
-                'adress' => $adress,
-                'birthDate' => $birthDate,
-                'cpf' => $cpf,
-                'password' => $password,
-                'username' => $email,
-                'createdAt' => new DateTime()
-            ];
+            return true;
         }
         return false;
     }
